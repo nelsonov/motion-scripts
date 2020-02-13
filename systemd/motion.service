@@ -1,0 +1,29 @@
+[Unit]
+Description=Motion
+After=network.target
+
+[Service]
+EnvironmentFile=/var/lib/motion/systemd/env.txt
+Type=simple
+#####
+#Send motion stdout,stderr to usb gadget serial
+#StandardOutput=tty
+#StandardError=tty
+#TTYPath=/dev/ttyGS0
+#####
+#User=%i
+User=motion
+ExecStart=/usr/local/bin/motion -n
+ExecReload=kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+
+
+
+
+
